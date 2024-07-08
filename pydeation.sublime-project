@@ -1,0 +1,42 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+		},
+		{
+			"path": "/Users/davidrug/Library/Preferences/Maxon/Maxon Cinema 4D R26_8986B2D7/library/scripts/DreamTalk-testing",
+		},
+		{
+			"path": "/Users/davidrug/Library/Preferences/Maxon/Maxon Cinema 4D R26_8986B2D7/library/scripts/DreamTalk-PL-pitch",
+		},
+		{
+			"path": "/Users/davidrug/Library/Preferences/Maxon/Maxon Cinema 4D R26_8986B2D7/library/scripts/DreamTalk-horizon-border",
+		},
+		{
+			"path": "/Users/davidrug/Library/Preferences/Maxon/Maxon Cinema 4D R26_8986B2D7/library/scripts/pytalk-interfaceguy-intro",
+		},
+		{
+			"path": "/Users/davidrug/Library/Preferences/Maxon/Maxon Cinema 4D R26_8986B2D7/library/scripts/PyTalk-CustodianOfTheNoosphere",
+		},
+		{
+			"path": "/Users/davidrug/Library/Preferences/Maxon/Maxon Cinema 4D R26_8986B2D7/library/scripts/DreamTalkProjects",
+		},
+	],
+	"build_systems":
+	[
+		{
+			"path": "/Users/davidrug/.virtualenvs/c4d/bin/python3.9",
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"name": "c4d",
+			"selector": "source.python",
+			"shell_cmd": "\"python\" -u \"$file\"",
+		},
+		{
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"name": "Anaconda Python Builder",
+			"selector": "source.python",
+			"shell_cmd": "\"python\" -u \"$file\"",
+		},
+	],
+}
