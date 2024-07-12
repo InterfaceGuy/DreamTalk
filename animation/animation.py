@@ -46,6 +46,12 @@ class KeyFrame:
             self.key.SetGeData(self.curve, self.value)
         else:  # general case
             self.key.SetValue(self.curve, self.value)
+            #self.key.SetAutomaticTangentMode(self.curve, c4d.CAUTOMODE_CLASSIC)
+            self.key.ChangeNBit(c4d.NBIT_CKEY_AUTO, c4d.NBITCONTROL_SET)
+            self.key.ChangeNBit(c4d.NBIT_CKEY_CLAMP, c4d.NBITCONTROL_CLEAR)
+            self.key.ChangeNBit(c4d.NBIT_CKEY_WEIGHTEDTANGENT, c4d.NBITCONTROL_SET)
+            self.key.ChangeNBit(c4d.NBIT_CKEY_REMOVEOVERSHOOT, c4d.NBITCONTROL_SET)
+
 
 
 class ProtoAnimation(ABC):
@@ -200,6 +206,7 @@ class ScalarAnimation(ProtoAnimation):
         # make sure it's correct data_type
         self.value_fin = self.value_type(value)
 
+
     def get_vector(self):
         """returns the vector i.e. the the difference between final and initial value"""
         vector = self.value_fin - self.value_ini
@@ -247,6 +254,7 @@ class VectorAnimation:
             scalar_animation = ScalarAnimation(
                 target=self.target, descriptor=descriptor, value_fin=value, relative=self.relative)
             self.scalar_animations.append(scalar_animation)
+
 
 class ColorAnimation(VectorAnimation):
     """a color animation takes in a color descriptor and derives the three respective scalar animations from it;
