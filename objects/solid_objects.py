@@ -213,6 +213,7 @@ class USD(SolidObject):
         self.file_path = file_path
         self.extract_object_from_import()
         self.remove_material_tag()
+
         super().__init__(**kwargs)
 
     def specify_object(self):
@@ -240,3 +241,29 @@ class USD(SolidObject):
             if tag.GetType() == c4d.Ttexture:
                 tag.Remove()
             tag = next_tag
+
+
+
+class Boole(SolidObject):
+
+    def __init__(self, *children, mode="union", **kwargs):
+        self.children = children
+        self.mode = mode
+        super().__init__(**kwargs)
+        self.insert_children()
+
+    def specify_object(self):
+        self.obj = c4d.BaseObject(c4d.Oboole)
+
+    def set_object_properties(self):
+        modes = {
+            "union": 0,
+            "subtract": 1,
+            "intersect": 2,
+            "without": 3,
+        }
+        self.obj[c4d.BOOLEOBJECT_TYPE] = modes[self.mode]
+
+    def insert_children(self):
+        for child in self.children:
+            child.obj.InsertUnder(self.obj)
