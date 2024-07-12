@@ -5,6 +5,7 @@ from DreamTalk.objects.abstract_objects import LineObject
 from DreamTalk.objects.helper_objects import Null, MoSpline
 from DreamTalk.constants import *
 from DreamTalk.xpresso.xpressions import XIdentity
+from DreamTalk.animation.animation import ScalarAnimation
 import c4d
 import os
 
@@ -44,6 +45,16 @@ class Circle(LineObject):
         self.desc_ids = {
             "radius": c4d.DescID(c4d.DescLevel(c4d.PRIM_CIRCLE_RADIUS, c4d.DTYPE_REAL, 0))
         }
+
+
+    def change_radius(self, radius=None):
+        if radius:
+            self.radius = radius
+            descriptor = c4d.PRIM_CIRCLE_RADIUS
+            animation = ScalarAnimation(
+                target=self, descriptor=descriptor, value_fin=radius)
+            self.obj[descriptor] = radius
+            return animation
 
 
 class Rectangle(LineObject):
